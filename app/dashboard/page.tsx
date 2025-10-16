@@ -4,6 +4,12 @@ import { getCurrentUser } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { TrendingUp } from "lucide-react";
 
+type ProductSummary = {
+  price: { toString(): string };
+  quantity: number;
+  createdAt: Date;
+};
+
 export default async function DashboardPage() {
   const user = await getCurrentUser();
   const userId = user.id;
@@ -24,17 +30,17 @@ export default async function DashboardPage() {
   ]);
 
   const totalValue = allProducts.reduce(
-    (sum: number, product: { price: { toString(): string }; quantity: number; createdAt: Date }) => 
+    (sum: number, product: ProductSummary) => 
       sum + Number(product.price) * product.quantity,
     0
   );
 
-  const inStockCount = allProducts.filter((p) => Number(p.quantity) > 5).length;
+  const inStockCount = allProducts.filter((p: ProductSummary) => p.quantity > 5).length;
   const lowStockCount = allProducts.filter(
-    (p) => Number(p.quantity) <= 5 && Number(p.quantity) >= 1
+    (p: ProductSummary) => p.quantity <= 5 && p.quantity >= 1
   ).length;
   const outOfStockCount = allProducts.filter(
-    (p) => Number(p.quantity) === 0
+    (p: ProductSummary) => p.quantity === 0
   ).length;
 
   const inStockPercentage =
@@ -61,7 +67,7 @@ export default async function DashboardPage() {
       "0"
     )}/${String(weekStart.getDate() + 1).padStart(2, "0")}`;
 
-    const weekProducts = allProducts.filter((product) => {
+    const weekProducts = allProducts.filter((product: ProductSummary) => {
       const productDate = new Date(product.createdAt);
       return productDate >= weekStart && productDate <= weekEnd;
     });
