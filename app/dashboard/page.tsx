@@ -170,7 +170,7 @@ export default async function DashboardPage() {
               </h2>
             </div>
             <div className="space-y-3">
-              {recent.map((product, key) => {
+              {recent.map((product: any, key: number)  => {
                 const stockLevel =
                   product.quantity === 0
                     ? 0
