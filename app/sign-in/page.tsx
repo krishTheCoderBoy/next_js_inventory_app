@@ -6,7 +6,7 @@ export default function SignInPage() {
         <div className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-br from-purple-50 to-purple-100">
             <div className="w-full max-w-md space-y-8">
                 <SignIn/>
-                <Link href="/">Go Back Home</Link>
+                <Link href="/dashboard">Go Back to  Dashboard</Link>
             </div>
         </div>
 
