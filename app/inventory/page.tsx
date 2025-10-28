@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
 // Update the import path if the file is in a different location, e.g.:
 import Pagination from "../../components/pagination";
 // Or, if the file does not exist, create it at app/components/pagination.tsx or components/pagination.tsx
