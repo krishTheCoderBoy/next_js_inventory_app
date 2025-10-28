@@ -1,3 +1,5 @@
+ export const dynamic = "force-dynamic";
+export const revalidate = 0;
  import ProductsChart from "@/components/products-chart";
 import Sidebar from "@/components/sidebar";
 import { getCurrentUser } from "@/lib/auth";
